@@ -18,6 +18,9 @@ public class TimerFrame extends JFrame {
     public static final int BUTTON_WIDTH = 80;
     public static final int BUTTON_HEIGHT = 30;
 
+    private JPanel mainPanel;
+    private JPanel buttonPanel;
+
     private JLabel label;
     private JButton startTimer;
     private JButton stopTimer;
@@ -38,32 +41,41 @@ public class TimerFrame extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createTitledBorder("Timer"));
+        mainPanel = new JPanel();
+        mainPanel.setBorder(BorderFactory.createTitledBorder("Timer"));
 
-        JPanel buttonPanel = new JPanel();
+        buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         label = new JLabel(timer.toString());
         label.setFont(new Font("Helvetica", Font.BOLD, 42));
+        mainPanel.add(label);
 
+        setUpButtons();
+
+        this.add(mainPanel, BorderLayout.CENTER);
+        this.add(buttonPanel, BorderLayout.SOUTH);
+
+        this.setVisible(true);
+    }
+
+    private void setUpButtons() {
         startTimer = new JButton("Start");
         startTimer.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         startTimer.addActionListener(buttonHandler);
+
+        buttonPanel.add(startTimer);
 
         stopTimer = new JButton("Stop");
         stopTimer.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         stopTimer.setEnabled(false);
         stopTimer.addActionListener(buttonHandler);
 
-        panel.add(label);
-        buttonPanel.add(startTimer);
         buttonPanel.add(stopTimer);
+    }
 
-        this.add(panel, BorderLayout.CENTER);
-        this.add(buttonPanel, BorderLayout.SOUTH);
+    private void setUpMenu() {
 
-        this.setVisible(true);
     }
 
     private class ButtonHandler implements ActionListener {
