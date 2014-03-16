@@ -108,7 +108,7 @@ public class Timer {
     }
 
 
-    public void resetTimer() {
+    public void reset() {
         setTimer(0, 0, 0);
     }
 

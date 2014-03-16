@@ -22,8 +22,9 @@ public class TimerFrame extends JFrame {
     private JPanel buttonPanel;
 
     private JLabel label;
-    private JButton startTimer;
-    private JButton stopTimer;
+    private JButton startTimerButton;
+    private JButton stopTimerButton;
+    private JButton resetButton;
 
     private ButtonHandler buttonHandler;
     private Timer timer;
@@ -60,18 +61,26 @@ public class TimerFrame extends JFrame {
     }
 
     private void setUpButtons() {
-        startTimer = new JButton("Start");
-        startTimer.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        startTimer.addActionListener(buttonHandler);
 
-        buttonPanel.add(startTimer);
+        // start button
+        startTimerButton = new JButton("Start");
+        startTimerButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        startTimerButton.addActionListener(buttonHandler);
+        buttonPanel.add(startTimerButton);
 
-        stopTimer = new JButton("Stop");
-        stopTimer.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        stopTimer.setEnabled(false);
-        stopTimer.addActionListener(buttonHandler);
+        // stop button
+        stopTimerButton = new JButton("Stop");
+        stopTimerButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        stopTimerButton.setEnabled(false);
+        stopTimerButton.addActionListener(buttonHandler);
+        buttonPanel.add(stopTimerButton);
 
-        buttonPanel.add(stopTimer);
+        // reset button
+        resetButton = new JButton("Reset");
+        resetButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        resetButton.setEnabled(false);
+        resetButton.addActionListener(buttonHandler);
+        buttonPanel.add(resetButton);
     }
 
     private void setUpMenu() {
@@ -84,11 +93,14 @@ public class TimerFrame extends JFrame {
 
         public void actionPerformed(ActionEvent event) {
 
-            if (event.getSource() == startTimer) {
+            if (event.getSource() == startTimerButton) {
                 processStartTimer(event);
-            }
-            else { // event.getSource() == stopTimer
+            }  // event.getSource() == stopTimerButton
+            else if (event.getSource() == stopTimerButton) { 
                 processStopTimer(event);
+            } else {
+                timer.reset();
+                label.setText(timer.toString());
             }
         } // end of actionPerformed
 
@@ -103,8 +115,10 @@ public class TimerFrame extends JFrame {
                     while (running) {
                         try {
                             Thread.sleep(1000);
-                            timer.incrementSecond();
-                            label.setText(timer.toString());
+                            if (running) {
+                                timer.incrementSecond();
+                                label.setText(timer.toString());
+                            }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -113,15 +127,17 @@ public class TimerFrame extends JFrame {
             });
 
             t.start();
-            stopTimer.setEnabled(true);
-            startTimer.setEnabled(false);
+            stopTimerButton.setEnabled(true);
+            resetButton.setEnabled(false);
+            startTimerButton.setEnabled(false);
         }
 
 
         private void processStopTimer(ActionEvent event) {
             running = false;
-            startTimer.setEnabled(true);
-            stopTimer.setEnabled(false);
+            startTimerButton.setEnabled(true);
+            stopTimerButton.setEnabled(false);
+            resetButton.setEnabled(true);
         }
 
 
