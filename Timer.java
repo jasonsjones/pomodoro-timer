@@ -1,3 +1,14 @@
+/**
+ * Filename: Timer.java
+ *
+ * Simple timer class that represents a timer with the notion of an hour,
+ * minute, and second in the form of H:MM:SS. Provides some basic functionality
+ * of incrementing (by a second) and resetting the timer.
+ *
+ * @author: Jason Jones (jsjones<at>gmail.com)
+ * @version 0.1
+ *
+ */
 public class Timer {
 
     private int hour;
