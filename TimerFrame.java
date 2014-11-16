@@ -2,6 +2,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.BorderFactory;
 
 import java.awt.event.ActionListener;
@@ -11,6 +14,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.EventQueue;
 
+// TODO: add javadoc comments
 public class TimerFrame extends JFrame {
 
     public static final int FRAME_WIDTH = 300;
@@ -18,8 +22,8 @@ public class TimerFrame extends JFrame {
     public static final int BUTTON_WIDTH = 80;
     public static final int BUTTON_HEIGHT = 30;
 
-    private JPanel mainPanel;
-    private JPanel buttonPanel;
+    //private JPanel mainPanel;
+    //private JPanel buttonPanel;
 
     private JLabel label;
     private JButton startTimerButton;
@@ -42,17 +46,18 @@ public class TimerFrame extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel();
         mainPanel.setBorder(BorderFactory.createTitledBorder("Timer"));
 
-        buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         label = new JLabel(timer.toString());
         label.setFont(new Font("Helvetica", Font.BOLD, 42));
         mainPanel.add(label);
 
-        setUpButtons();
+        setUpButtons(buttonPanel);
+        setUpMenu();
 
         this.add(mainPanel, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
@@ -60,7 +65,7 @@ public class TimerFrame extends JFrame {
         this.setVisible(true);
     }
 
-    private void setUpButtons() {
+    private void setUpButtons(JPanel buttonPanel) {
 
         // start button
         startTimerButton = new JButton("Start");
@@ -85,6 +90,21 @@ public class TimerFrame extends JFrame {
 
     private void setUpMenu() {
 
+        JMenuBar menubar = new JMenuBar();
+        JMenu file = new JMenu("File");
+
+        JMenuItem eMenuItem = new JMenuItem("Exit");
+        eMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+
+        file.add (eMenuItem);
+        menubar.add(file);
+        this.setJMenuBar(menubar);
+
     }
 
     private class ButtonHandler implements ActionListener {
@@ -96,7 +116,7 @@ public class TimerFrame extends JFrame {
             if (event.getSource() == startTimerButton) {
                 processStartTimer(event);
             }  // event.getSource() == stopTimerButton
-            else if (event.getSource() == stopTimerButton) { 
+            else if (event.getSource() == stopTimerButton) {
                 processStopTimer(event);
             } else {
                 timer.reset();
