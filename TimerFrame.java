@@ -14,25 +14,44 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.EventQueue;
 
-// TODO: add javadoc comments
+/**
+ * Basic swing application to display a timer with the basic functionalty to
+ * start, stop, and reset.  The timer implemented in the application only
+ * counts up; it is not a count-down timer.  Maybe a stopwatch would have been
+ * a better description.
+ *
+ * @author Jason Jones jsjones96<at>gmail.com
+ * @version 0.0.1
+ */
 public class TimerFrame extends JFrame {
 
+    // constants
     public static final int FRAME_WIDTH = 300;
     public static final int FRAME_HEIGHT = 150;
     public static final int BUTTON_WIDTH = 80;
     public static final int BUTTON_HEIGHT = 30;
 
-    //private JPanel mainPanel;
-    //private JPanel buttonPanel;
-
+    // label to hold the time of the timer
     private JLabel label;
+
+    // start button
     private JButton startTimerButton;
+    // stop button
     private JButton stopTimerButton;
+    // reset button
     private JButton resetButton;
 
+    // event handler for the buttons
     private ButtonHandler buttonHandler;
+
+    // timer object
     private Timer timer;
 
+
+    /**
+     * Constructs the frame and other GUI components as well as instantiates
+     * the timer object and button event handler.
+     */
     public TimerFrame() {
 
         super("Timer");
@@ -101,7 +120,7 @@ public class TimerFrame extends JFrame {
             }
         });
 
-        file.add (eMenuItem);
+        file.add(eMenuItem);
         menubar.add(file);
         this.setJMenuBar(menubar);
 
