@@ -1,15 +1,15 @@
 /**
- * Filename: Timer.java
+ * Filename: TimerModel.java
  *
  * Simple timer class that represents a timer with the notion of an hour,
  * minute, and second in the form of H:MM:SS. Provides some basic functionality
  * of incrementing (by a second) and resetting the timer.
  *
- * @author: Jason Jones (jsjones<at>gmail.com)
+ * @author: Jason Jones (jsjones@gmail.com)
  * @version 0.1
  *
  */
-public class Timer {
+public class TimerModel {
 
     // instance variable representing the hour
     private int hour;
@@ -25,7 +25,7 @@ public class Timer {
      * Contructs a default Timer object intializing the hour, minute, and
      * second to 0
      */
-    public Timer() {
+    public TimerModel() {
 
         this(0, 0, 0);
     }
@@ -37,7 +37,7 @@ public class Timer {
      *
      * @param h the hour
      */
-    public Timer(int h) {
+    public TimerModel(int h) {
 
         this(h, 0, 0);
     }
@@ -50,7 +50,7 @@ public class Timer {
      * @param h the hour
      * @param m the minute
      */
-    public Timer(int h, int m) {
+    public TimerModel(int h, int m) {
 
         this(h, m, 0);
     }
@@ -64,7 +64,7 @@ public class Timer {
      * @param m the minute
      * @param s the second
      */
-    public Timer(int h, int m, int s) {
+    public TimerModel(int h, int m, int s) {
 
         setTimer(h, m, s);
     }

@@ -1,16 +1,16 @@
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.EventQueue;
 
 /**
  * Basic swing application to display a timer with the basic functionalty to
@@ -18,31 +18,41 @@ import java.awt.EventQueue;
  * counts up; it is not a count-down timer.  Maybe a stopwatch would have been
  * a better description.
  *
- * @author Jason Jones jsjones96<at>gmail.com
+ * @author Jason Jones jsjones96@gmail.com
  * @version 0.0.1
  */
-public class TimerFrame extends JFrame {
+public class TimerFrameView extends JFrame {
+
+    private static final long serialVersionUID = 1L;
 
     // constants
     public static final int FRAME_WIDTH = 300;
-    public static final int FRAME_HEIGHT = 150;
-    public static final int BUTTON_WIDTH = 80;
-    public static final int BUTTON_HEIGHT = 30;
+    public static final int FRAME_HEIGHT = 250;
 
-    // timer object
-    private Timer timer;
+    ButtonPanelView buttonPanel;
 
+    JLabel label;
 
     /**
      * Constructs the frame and other GUI components as well as instantiates
-     * the timer object and button event handler.
+     * the timer object and button panel.
      */
-    public TimerFrame() {
+    public TimerFrameView() {
 
         super("Timer");
-        timer = new Timer();
         setUpUI();
     }
+
+
+    public ButtonPanelView getButtonPanel() {
+    	return buttonPanel;
+    }
+
+
+    public JLabel getLabel() {
+    	return label;
+    }
+
 
     private void setUpUI() {
 
@@ -52,13 +62,11 @@ public class TimerFrame extends JFrame {
         JPanel mainPanel = new JPanel();
         mainPanel.setBorder(BorderFactory.createTitledBorder("Timer"));
 
-        JLabel label = new JLabel(timer.toString());
+        label = new JLabel();
         label.setFont(new Font("Helvetica", Font.BOLD, 42));
         mainPanel.add(label);
 
-        ButtonPanel buttonPanel = new ButtonPanel();
-        buttonPanel.setTimer(timer);
-        buttonPanel.setLabel(label);
+        buttonPanel = new ButtonPanelView();
 
         setUpMenu();
 
@@ -86,16 +94,5 @@ public class TimerFrame extends JFrame {
         menubar.add(file);
         this.setJMenuBar(menubar);
 
-    }
-
-    public static void main (String[] args) {
-
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                TimerFrame tf = new TimerFrame();
-            }
-
-        });
     }
 }
