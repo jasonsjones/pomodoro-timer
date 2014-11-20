@@ -193,7 +193,7 @@ public class TimerModel {
      * H:MM:SS.  For example if the timer was at 1 minute 30 seconds, the
      * representation would be 0:01:30.
      *
-     *@returns the string representation (H:MM:SS)
+     *@return the string representation (H:MM:SS)
      */
     public String toString() {
 
