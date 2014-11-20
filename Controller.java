@@ -10,6 +10,11 @@ import javax.swing.JButton;
  */
 public class Controller {
 
+    // constants
+    private static final int START = 0;
+    private static final int STOP = 1;
+    private static final int RESET = 2;
+
 	private TimerModel model;
 	private TimerFrameView view;
 	private ActionListener actionListener;
@@ -34,32 +39,32 @@ public class Controller {
 	}
 	
 	
-  /**
-   * private inner class for event handling
-   * 
-   *
-   */
-  private class ButtonHandler implements ActionListener {
+    /**
+    * private inner class for event handling
+    * 
+    *
+    */
+    private class ButtonHandler implements ActionListener {
 
-      private volatile boolean running = true;
+        private volatile boolean running = true;
 
-      public void actionPerformed(ActionEvent event) {
+        public void actionPerformed(ActionEvent event) {
 
-          if (event.getSource() == btn[0]) {
-              processStartTimer(event);
-          }  // event.getSource() == stop button
-          else if (event.getSource() == btn[1]) {
-              processStopTimer(event);
-          } else {
-              model.reset();
-              view.getLabel().setText(model.toString());
-          }
-      } // end of actionPerformed
+            if (event.getSource() == btn[START]) {
+                processStartTimer(event);
+            }  // event.getSource() == stop button
+            else if (event.getSource() == btn[STOP]) {
+                processStopTimer(event);
+            } else {
+                model.reset();
+                view.getLabel().setText(model.toString());
+            }
+        } // end of actionPerformed
 
 
-      private void processStartTimer(ActionEvent event) {
+        private void processStartTimer(ActionEvent event) {
 
-          Thread t = new Thread(new Runnable() {
+            Thread t = new Thread(new Runnable() {
 
               @Override
               public void run() {
@@ -76,27 +81,27 @@ public class Controller {
                       }
                   }
               }
-          });
+            });
 
-          t.start();
-          // stop button
-          btn[1].setEnabled(true);
-          // reset button
-          btn[2].setEnabled(false);
-          // start button
-          btn[0].setEnabled(false);
-      }
+            t.start();
+            // stop button
+            btn[STOP].setEnabled(true);
+            // reset button
+            btn[RESET].setEnabled(false);
+            // start button
+            btn[START].setEnabled(false);
+        }
 
 
-      private void processStopTimer(ActionEvent event) {
-          running = false;
-          // start button
-          btn[0].setEnabled(true);
-          // stop button
-          btn[1].setEnabled(false);
-          // reset button
-          btn[2].setEnabled(true);
-      }
+        private void processStopTimer(ActionEvent event) {
+            running = false;
+            // start button
+            btn[START].setEnabled(true);
+            // stop button
+            btn[STOP].setEnabled(false);
+            // reset button
+            btn[RESET].setEnabled(true);
+        }
 
-  } // end of ButtonHandler class
+    } // end of ButtonHandler class
 }
