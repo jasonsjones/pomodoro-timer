@@ -24,7 +24,6 @@ public class ButtonPanelView extends JPanel {
      * the 'start', 'stop', and 'reset' button.
      */
     public ButtonPanelView() {
-
         // instantiate an array of 3 JButtons
         btn = new JButton[3];
 
@@ -59,7 +58,7 @@ public class ButtonPanelView extends JPanel {
      * @return the array of buttons
      */
     public JButton[] getButtons() {
-    	return btn;
+        return btn;
     }
-
 }
+
