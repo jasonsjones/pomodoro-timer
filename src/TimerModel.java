@@ -26,7 +26,6 @@ public class TimerModel {
      * second to 0
      */
     public TimerModel() {
-
         this(0, 0, 0);
     }
 
@@ -38,7 +37,6 @@ public class TimerModel {
      * @param h the hour
      */
     public TimerModel(int h) {
-
         this(h, 0, 0);
     }
 
@@ -51,7 +49,6 @@ public class TimerModel {
      * @param m the minute
      */
     public TimerModel(int h, int m) {
-
         this(h, m, 0);
     }
 
@@ -65,7 +62,6 @@ public class TimerModel {
      * @param s the second
      */
     public TimerModel(int h, int m, int s) {
-
         setTimer(h, m, s);
     }
 
@@ -79,7 +75,6 @@ public class TimerModel {
      * @param s the second
      */
     public void setTimer(int h, int m, int s) {
-
         setHour(h);
         setMinute(m);
         setSecond(s);
@@ -93,7 +88,6 @@ public class TimerModel {
      * @param h the hour
      */
     public void setHour(int h) {
-
         this.hour = ( h >= 0 && h < 24 ) ? h : 0;
     }
 
@@ -105,7 +99,6 @@ public class TimerModel {
      * @param m the minute
      */
     public void setMinute(int m) {
-
         this.minute = (m >= 0 && m < 60 ) ? m : 0;
     }
 
@@ -117,7 +110,6 @@ public class TimerModel {
      * @param s the second
      */
     public void setSecond(int s) {
-
         this.second = (s >= 0 && s < 60 ) ? s : 0;
     }
 
@@ -169,7 +161,6 @@ public class TimerModel {
      * the minute value is incremented by one and the seconds are reset to 0.
      */
     public void incrementSecond() {
-
         int s = getSecond() + 1;
 
         if (s == 60) {
@@ -196,7 +187,6 @@ public class TimerModel {
      *@return the string representation (H:MM:SS)
      */
     public String toString() {
-
         return String.format("%d:%02d:%02d",
                 getHour(), getMinute(), getSecond());
     }
@@ -207,13 +197,11 @@ public class TimerModel {
     //============================
 
     private void incrementHour() {
-
         setHour((getHour() + 1) % 24);
     }
 
 
     private void incrementMinute() {
-
         int m = getMinute() + 1;
 
         if (m == 60) {
@@ -223,3 +211,4 @@ public class TimerModel {
             setMinute(m);
     }
 }
+

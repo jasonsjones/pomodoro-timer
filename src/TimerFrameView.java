@@ -38,24 +38,22 @@ public class TimerFrameView extends JFrame {
      * the timer object and button panel.
      */
     public TimerFrameView() {
-
         super("Timer");
         setUpUI();
     }
 
 
     public ButtonPanelView getButtonPanel() {
-    	return buttonPanel;
+        return buttonPanel;
     }
 
 
     public JLabel getLabel() {
-    	return label;
+        return label;
     }
 
 
     private void setUpUI() {
-
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -78,7 +76,6 @@ public class TimerFrameView extends JFrame {
 
 
     private void setUpMenu() {
-
         JMenuBar menubar = new JMenuBar();
         JMenu file = new JMenu("File");
 
@@ -96,3 +93,4 @@ public class TimerFrameView extends JFrame {
 
     }
 }
+
