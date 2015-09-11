@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  * @author Jason Jones jsjones96@gmail.com
  * @version 0.0.1
  */
-public class TimerFrameView extends JFrame {
+public class StopWatchFrameView extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,8 +37,8 @@ public class TimerFrameView extends JFrame {
      * Constructs the frame and other GUI components as well as instantiates
      * the timer object and button panel.
      */
-    public TimerFrameView() {
-        super("Timer");
+    public StopWatchFrameView() {
+        super("StopWatch");
         setUpUI();
     }
 
@@ -58,7 +58,7 @@ public class TimerFrameView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JPanel mainPanel = new JPanel();
-        mainPanel.setBorder(BorderFactory.createTitledBorder("Timer"));
+        mainPanel.setBorder(BorderFactory.createTitledBorder("StopWatch"));
 
         label = new JLabel();
         label.setFont(new Font("Helvetica", Font.BOLD, 42));

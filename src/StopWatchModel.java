@@ -1,5 +1,5 @@
 /**
- * Filename: TimerModel.java
+ * Filename: StopWatchModel.java
  *
  * Simple timer class that represents a timer with the notion of an hour,
  * minute, and second in the form of H:MM:SS. Provides some basic functionality
@@ -9,7 +9,7 @@
  * @version 0.1
  *
  */
-public class TimerModel {
+public class StopWatchModel {
 
     // instance variable representing the hour
     private int hour;
@@ -22,46 +22,46 @@ public class TimerModel {
 
 
     /**
-     * Contructs a default Timer object intializing the hour, minute, and
+     * Contructs a default StopWatch object intializing the hour, minute, and
      * second to 0
      */
-    public TimerModel() {
+    public StopWatchModel() {
         this(0, 0, 0);
     }
 
 
     /**
-     * Contructs a Timer object initializing the hour to h, and minute and
+     * Contructs a StopWatch object initializing the hour to h, and minute and
      * second to 0
      *
      * @param h the hour
      */
-    public TimerModel(int h) {
+    public StopWatchModel(int h) {
         this(h, 0, 0);
     }
 
 
     /**
-     * Contructs a Timer object intializing the hour to h, minute to m, and
+     * Contructs a StopWatch object intializing the hour to h, minute to m, and
      * second to 0
      *
      * @param h the hour
      * @param m the minute
      */
-    public TimerModel(int h, int m) {
+    public StopWatchModel(int h, int m) {
         this(h, m, 0);
     }
 
 
     /**
-     * Contructs a Timer object initializing the hour to h, minute to m, and
+     * Contructs a StopWatch object initializing the hour to h, minute to m, and
      * second to s.
      *
      * @param h the hour
      * @param m the minute
      * @param s the second
      */
-    public TimerModel(int h, int m, int s) {
+    public StopWatchModel(int h, int m, int s) {
         setTimer(h, m, s);
     }
 

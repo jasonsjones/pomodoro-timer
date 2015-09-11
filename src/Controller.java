@@ -14,13 +14,13 @@ public class Controller {
     private static final int STOP = 1;
     private static final int RESET = 2;
 
-    private TimerModel model;
-    private TimerFrameView view;
+    private StopWatchModel model;
+    private StopWatchFrameView view;
     private ActionListener actionListener;
     private JButton[] btn;
 
 
-    public Controller(TimerModel model, TimerFrameView view) {
+    public Controller(StopWatchModel model, StopWatchFrameView view) {
         this.model = model;
         this.view = view;
         this.btn = view.getButtonPanel().getButtons();

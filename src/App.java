@@ -14,8 +14,8 @@ public class App {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                TimerFrameView view = new TimerFrameView();
-                TimerModel model = new TimerModel();
+                StopWatchFrameView view = new StopWatchFrameView();
+                StopWatchModel model = new StopWatchModel();
                 Controller ctrl = new Controller(model, view);
                 ctrl.control();
             }
