@@ -170,6 +170,17 @@ public class StopWatchModel {
             setSecond(s);
     }
 
+    public void decrementSecond() {
+        int s = getSecond();
+
+        if (s == 0) {
+            setSecond(59);
+            decrementMinute();
+        } else {
+            setSecond(s - 1);
+        }
+    }
+
 
     /**
      * Resets the timer to 0:00:00.
@@ -207,8 +218,28 @@ public class StopWatchModel {
         if (m == 60) {
             setMinute(0);
             incrementHour();
-        } else
+        } else {
             setMinute(m);
+        }
+    }
+
+    private void decrementHour() {
+        int h = getHour();
+
+        if (h > 0) {
+            setHour(h - 1);
+        }
+    }
+
+    private void decrementMinute() {
+        int m = getMinute();
+
+        if (m == 0 && getHour() > 0) {
+            setMinute(59);
+            decrementHour();
+        } else {
+            setMinute((m==0)?m:m-1);
+        }
     }
 }
 
