@@ -1,3 +1,4 @@
 *.class
 .c9
 *.swp
+/bin/
