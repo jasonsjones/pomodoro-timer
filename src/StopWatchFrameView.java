@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 
 
 /**
- * Basic swing application to display a timer with the basic functionalty to
+ * Basic swing application to display a timer with the basic functionality to
  * start, stop, and reset.  The timer implemented in the application only
  * counts up; it is not a count-down timer.  Maybe a stopwatch would have been
  * a better description.
@@ -89,6 +89,18 @@ public class StopWatchFrameView extends JFrame {
 
         file.add(eMenuItem);
         menubar.add(file);
+        
+        JMenu mode = new JMenu("Mode");
+        JMenuItem modeMenuItem = new JMenuItem("Timer");
+        modeMenuItem.addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent event) {
+        		System.out.println("you are switching modes to timer");
+        	}
+        });
+        
+        mode.add(modeMenuItem);
+        menubar.add(mode);
         this.setJMenuBar(menubar);
 
     }
