@@ -14,12 +14,14 @@ public class App {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                StopWatchFrameView view = new StopWatchFrameView();
-                StopWatchModel model = new StopWatchModel();
-                Controller ctrl = new Controller(model, view);
-                ctrl.control();
+                MainFrameView view = new MainFrameView();
+                //StopWatchFrameView view = new StopWatchFrameView();
+                //StopWatchModel model = new StopWatchModel();
+                //Controller ctrl = new Controller(model, view);
+                //ctrl.control();
             }
         });
+    	
     }
 }
 
