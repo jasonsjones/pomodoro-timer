@@ -5,7 +5,7 @@
  * minute, and second in the form of H:MM:SS. Provides some basic functionality
  * of incrementing (by a second) and resetting the timer.
  *
- * @author: Jason Jones (jsjones@gmail.com)
+ * @author: Jason Jones (jsjones96@gmail.com)
  * @version 0.1
  *
  */
@@ -22,7 +22,7 @@ public class StopWatchModel {
 
 
     /**
-     * Contructs a default StopWatch object intializing the hour, minute, and
+     * Constructs a default StopWatch object initializing the hour, minute, and
      * second to 0
      */
     public StopWatchModel() {
@@ -31,7 +31,7 @@ public class StopWatchModel {
 
 
     /**
-     * Contructs a StopWatch object initializing the hour to h, and minute and
+     * Constructs a StopWatch object initializing the hour to h, and minute and
      * second to 0
      *
      * @param h the hour
@@ -42,7 +42,7 @@ public class StopWatchModel {
 
 
     /**
-     * Contructs a StopWatch object intializing the hour to h, minute to m, and
+     * Constructs a StopWatch object initializing the hour to h, minute to m, and
      * second to 0
      *
      * @param h the hour
@@ -54,7 +54,7 @@ public class StopWatchModel {
 
 
     /**
-     * Contructs a StopWatch object initializing the hour to h, minute to m, and
+     * Constructs a StopWatch object initializing the hour to h, minute to m, and
      * second to s.
      *
      * @param h the hour
