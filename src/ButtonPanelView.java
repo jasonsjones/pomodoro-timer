@@ -1,64 +1,68 @@
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
-public class ButtonPanelView extends JPanel {
-
-    // consants
-    private static final int START = 0;
-    private static final int STOP = 1;
-    private static final int RESET = 2;
+public class ButtonPanelView extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
     private static final int BUTTON_WIDTH = 80;
     private static final int BUTTON_HEIGHT = 30;
 
-    // array for buttons--start, stop, & reset
-    private JButton[] btn;
+    private ClickListener clickListener;
+
+    private JButton startBtn;
+    private JButton stopBtn;
+    private JButton resetBtn;
 
     /**
      * Constructs a ButtonPanel and adds three buttons to the button for
      * the 'start', 'stop', and 'reset' button.
      */
     public ButtonPanelView() {
-        // instantiate an array of 3 JButtons
-        btn = new JButton[3];
+        startBtn = new JButton("Start");
+        stopBtn = new JButton("Stop");
+        resetBtn = new JButton("Reset");
 
-        // start button
-        btn[START] = new JButton("Start");
-        btn[START].setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        this.add(btn[START]);
-
-        // stop button
-        btn[STOP] = new JButton("Stop");
-        btn[STOP].setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        btn[STOP].setEnabled(false);
-        this.add(btn[STOP]);
-
-        // reset button
-        btn[RESET] = new JButton("Reset");
-        btn[RESET].setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        btn[RESET].setEnabled(false);
-        this.add(btn[RESET]);
+        this.setBorder(BorderFactory.createEtchedBorder());
 
         // set the layout for this panel and place the buttons
         // on the right
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        startBtn.addActionListener(this);
+        stopBtn.addActionListener(this);
+        resetBtn.addActionListener(this);
+
+        add(startBtn);
+        add(stopBtn);
+        add(resetBtn);
     }
 
+    public void addClickListener(ClickListener listener) {
+       this.clickListener = listener;
+    }
 
-    /**
-     * Returns the array of buttons added to the panel.  This is needed so
-     * the action listener can get access to the buttons to know when they
-     * are clicked.
-     *
-     * @return the array of buttons
-     */
-    public JButton[] getButtons() {
-        return btn;
+    public JButton getStartBtn() {
+        return startBtn;
+    }
+
+    public JButton getStopBtn() {
+        return stopBtn;
+    }
+
+    public JButton getResetBtn() {
+        return resetBtn;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (clickListener != null) {
+            clickListener.onClick(e);
+        }
     }
 }
 

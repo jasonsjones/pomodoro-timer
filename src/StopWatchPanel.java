@@ -12,7 +12,7 @@ public class StopWatchPanel extends JPanel {
     JLabel label;
 
     public StopWatchPanel() {
-        label = new JLabel("Label goes here...");
+        label = new JLabel();
         setUpUI();
     }
 

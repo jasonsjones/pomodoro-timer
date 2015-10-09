@@ -36,11 +36,11 @@ public class MainFrameView extends JFrame {
     }
 
     public ButtonPanelView getButtonPanel() {
-        return buttonPanel;
+        return this.buttonPanel;
     }
     
     public JLabel getStopWatchPanelLabel() {
-    	return stopWatchPanel.getLabel();
+        return this.stopWatchPanel.getLabel();
     }
 
 

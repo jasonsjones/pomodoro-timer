@@ -93,10 +93,10 @@ public class StopWatchFrameView extends JFrame {
         JMenu mode = new JMenu("Mode");
         JMenuItem modeMenuItem = new JMenuItem("Timer");
         modeMenuItem.addActionListener(new ActionListener() {
-        	@Override
-        	public void actionPerformed(ActionEvent event) {
-        		System.out.println("you are switching modes to timer");
-        	}
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("you are switching modes to timer");
+            }
         });
         
         mode.add(modeMenuItem);
