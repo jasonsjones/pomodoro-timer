@@ -2,3 +2,7 @@
 .c9
 *.swp
 /bin/
+*.iml
+.idea/
+.project
+.settings/
