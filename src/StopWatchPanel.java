@@ -1,5 +1,5 @@
 import javax.swing.BorderFactory;
-import java.awt.Font;
+import java.awt.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,9 +23,17 @@ public class StopWatchPanel extends JPanel {
 
     private void setUpUI() {
         this.setBorder(BorderFactory.createTitledBorder("StopWatch"));
-
         label.setFont(new Font("Helvetica", Font.BOLD, 42));
-        this.add(label);
+
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gc = new GridBagConstraints();
+        gc.weightx = 1;
+        gc.weighty = 1;
+
+        gc.gridx = 0;
+        gc.gridy = 0;
+        gc.fill = GridBagConstraints.NONE;
+        this.add(label, gc);
 
         this.setVisible(true);
     }
