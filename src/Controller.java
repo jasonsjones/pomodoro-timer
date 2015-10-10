@@ -1,12 +1,5 @@
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-
-/**
- * @author Jason Jones (jsjone96@gmail.com)
- *
- */
 public class Controller {
 
     private volatile boolean running = true;
@@ -25,10 +18,8 @@ public class Controller {
     private void setUpListeners() {
         this.mainFrame.getButtonPanel()
                 .addClickListener(new ClickListener() {
-
                     @Override
                     public void onClick(ActionEvent e) {
-
                         if (e.getActionCommand().equals("Start")) {
                             processStart();
                         } else if (e.getActionCommand().equals("Stop")) {
@@ -37,6 +28,14 @@ public class Controller {
                             model.reset();
                             mainFrame.getStopWatchPanelLabel().setText(model.toString());
                         }
+                    }
+                });
+
+        this.mainFrame.getMainMenuBar()
+                .addMainMenuListener(new MainMenuListener() {
+                    @Override
+                    public void emitMenuEvent(ActionEvent e) {
+                        System.out.println("menu clicked..." + e.getActionCommand());
                     }
                 });
     }
@@ -71,7 +70,6 @@ public class Controller {
         mainFrame.getButtonPanel().getStartBtn().setEnabled(false);
 
     }
-
 
     private void processStop() {
         running = false;
