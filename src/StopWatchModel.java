@@ -5,20 +5,13 @@
  * minute, and second in the form of H:MM:SS. Provides some basic functionality
  * of incrementing (by a second) and resetting the timer.
  *
- * @author: Jason Jones (jsjones96@gmail.com)
+ * @author Jason Jones (jsjones96@gmail.com)
  * @version 0.1
  *
  */
 public class StopWatchModel {
 
-    // instance variable representing the hour
-    private int hour;
-
-    // instance variable representing the minute
-    private int minute;
-
-    // instance variable representing the second
-    private int second;
+    private int timeInSeconds;
 
 
     /**
@@ -75,44 +68,13 @@ public class StopWatchModel {
      * @param s the second
      */
     public void setTimer(int h, int m, int s) {
-        setHour(h);
-        setMinute(m);
-        setSecond(s);
+        this.timeInSeconds = (h * 60 * 60) + (m * 60) + s;
     }
 
 
-    /**
-     * Sets the hour for the timer to h.  Checks to ensure the parameter is
-     * a valid value to represent an hour (0-23), otherwise sets hour to 0.
-     *
-     * @param h the hour
-     */
-    public void setHour(int h) {
-        this.hour = ( h >= 0 && h < 24 ) ? h : 0;
+    public int getTimeInSeconds() {
+        return this.timeInSeconds;
     }
-
-
-    /**
-     * Sets the minute for the timer to m.  Checks to ensure the parameter is
-     * a valid value to represent a minute (0-59), otherwise sets minute to 0.
-     *
-     * @param m the minute
-     */
-    public void setMinute(int m) {
-        this.minute = (m >= 0 && m < 60 ) ? m : 0;
-    }
-
-
-    /**
-     * Sets the second for the timer to s.  Checks to ensure the parameter is
-     * a valid value to represent a second (0-59), otherwise sets second to 0.
-     *
-     * @param s the second
-     */
-    public void setSecond(int s) {
-        this.second = (s >= 0 && s < 60 ) ? s : 0;
-    }
-
 
     /**
      * Returns the value of 'hour' field for the timer object.
@@ -120,7 +82,7 @@ public class StopWatchModel {
      * @return the value of the hour field
      */
     public int getHour(){
-        return this.hour;
+        return this.getTimeInSeconds() / (60 * 60);
     }
 
 
@@ -130,7 +92,7 @@ public class StopWatchModel {
      * @return the value of the minute field
      */
     public int getMinute(){
-        return this.minute;
+        return this.getTimeInSeconds() / 60;
     }
 
 
@@ -140,19 +102,7 @@ public class StopWatchModel {
      * @return the value of the second field
      */
     public int getSecond(){
-        return this.second;
-    }
-
-
-    /**
-     * Returns the total time (in minutes) the timer has been running.  Any
-     * value over 30 seconds will round up to the next minute.
-     *
-     * @return the total time in minutes
-     */
-    public int getTotalTimeInMinutes() {
-        return getHour() * 60 + getMinute() + ( getSecond() > 30 ? 1 : 0 );
-
+        return this.getTimeInSeconds() % 60;
     }
 
 
@@ -161,23 +111,12 @@ public class StopWatchModel {
      * the minute value is incremented by one and the seconds are reset to 0.
      */
     public void incrementSecond() {
-        int s = getSecond() + 1;
-
-        if (s == 60) {
-            setSecond(0);
-            incrementMinute();
-        } else
-            setSecond(s);
+        this.timeInSeconds++;
     }
 
     public void decrementSecond() {
-        int s = getSecond();
-
-        if (s == 0) {
-            setSecond(59);
-            decrementMinute();
-        } else {
-            setSecond(s - 1);
+        if (this.getTimeInSeconds() > 0) {
+            this.timeInSeconds--;
         }
     }
 
@@ -199,47 +138,8 @@ public class StopWatchModel {
      */
     public String toString() {
         return String.format("%d:%02d:%02d",
-                getHour(), getMinute(), getSecond());
+                this.getHour(), this.getMinute(), this.getSecond());
     }
 
-
-    //============================
-    // Private methods
-    //============================
-
-    private void incrementHour() {
-        setHour((getHour() + 1) % 24);
-    }
-
-
-    private void incrementMinute() {
-        int m = getMinute() + 1;
-
-        if (m == 60) {
-            setMinute(0);
-            incrementHour();
-        } else {
-            setMinute(m);
-        }
-    }
-
-    private void decrementHour() {
-        int h = getHour();
-
-        if (h > 0) {
-            setHour(h - 1);
-        }
-    }
-
-    private void decrementMinute() {
-        int m = getMinute();
-
-        if (m == 0 && getHour() > 0) {
-            setMinute(59);
-            decrementHour();
-        } else {
-            setMinute((m==0)?m:m-1);
-        }
-    }
 }
 
