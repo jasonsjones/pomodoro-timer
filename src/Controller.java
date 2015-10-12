@@ -4,10 +4,10 @@ public class Controller {
 
     private volatile boolean running = true;
 
-    private StopWatchModel model;
+    private TimeModel model;
     private MainFrameView mainFrame;
 
-    public Controller(StopWatchModel model, MainFrameView view) {
+    public Controller(TimeModel model, MainFrameView view) {
         this.model = model;
         this.mainFrame = view;
         this.mainFrame.getStopWatchPanelLabel().setText(this.model.toString());

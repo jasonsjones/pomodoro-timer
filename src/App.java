@@ -9,7 +9,7 @@ public class App {
             @Override
             public void run() {
                 MainFrameView view = new MainFrameView();
-                StopWatchModel model = new StopWatchModel();
+                TimeModel model = new TimeModel();
                 new Controller(model, view);
             }
         });
