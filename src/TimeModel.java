@@ -70,8 +70,12 @@ public class TimeModel {
      * @param m the minute
      * @param s the second
      */
-    public void setTimer(int h, int m, int s) {
-        this.timeInSeconds = (h * 60 * 60) + (m * 60) + s;
+    public void setTimer(int h, int m, int s) throws IllegalArgumentException {
+        int time = (h * 60 * 60) + (m * 60) + s;
+        if (time < 0) {
+            throw new IllegalArgumentException("Can't set timer to have negative time.");
+        }
+        this.timeInSeconds = time;
     }
 
 
