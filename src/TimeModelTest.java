@@ -29,4 +29,10 @@ public class TimeModelTest {
         TimeModel tm = new TimeModel(2, 15, 34);
         Assert.assertEquals((2*60*60)+(15*60)+34, tm.getTimeInSeconds());
     }
+
+    @org.junit.Test (expected = IllegalArgumentException.class)
+    public void testConstructorWithNegativeArgument() throws Exception {
+
+        new TimeModel(-34);
+    }
 }
