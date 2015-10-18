@@ -27,8 +27,6 @@ public class StopWatchPanel extends JPanel {
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
-        gc.weightx = 1;
-        gc.weighty = 1;
 
         gc.gridx = 0;
         gc.gridy = 0;

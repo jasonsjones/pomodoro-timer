@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+import java.awt.*;
 
 import javax.swing.*;
 
@@ -10,8 +10,10 @@ public class MainFrameView extends JFrame {
     public static final int FRAME_WIDTH = 350;
     public static final int FRAME_HEIGHT = 250;
 
-    private StopWatchPanel stopWatchPanel;
-    private ButtonPanelView buttonPanel;
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
+    private StopWatchContainerView stopWatchContainerView;
+    private SplashScreenPanel splashScreenPanel;
     private MainMenuBar mainMenuBar;
 
     /**
@@ -19,33 +21,58 @@ public class MainFrameView extends JFrame {
      */
     public MainFrameView() {
         super("Pomodoro");
-        stopWatchPanel = new StopWatchPanel();
-        buttonPanel = new ButtonPanelView();
+        stopWatchContainerView = new StopWatchContainerView();
         mainMenuBar = new MainMenuBar();
+        splashScreenPanel = new SplashScreenPanel();
         setUpUI();
     }
 
     public ButtonPanelView getButtonPanel() {
-        return this.buttonPanel;
+        return this.stopWatchContainerView.getButtonPanel();
+    }
+
+    public CardLayout getCardLayout() {
+        return this.cardLayout;
     }
 
     public MainMenuBar getMainMenuBar() {
         return this.mainMenuBar;
     }
-    
+
+    public JPanel getMainPanel() {
+        return this.mainPanel;
+    }
+
+    public SplashScreenPanel getSplashScreenPanel() {
+        return this.splashScreenPanel;
+    }
+
+    public StopWatchContainerView getStopWatchContainerView() {
+        return this.stopWatchContainerView;
+    }
+
+    public StopWatchPanel getStopWatchPanel() {
+        return this.stopWatchContainerView.getStopWatchPanel();
+    }
+
     public JLabel getStopWatchPanelLabel() {
-        return this.stopWatchPanel.getLabel();
+        return this.stopWatchContainerView.getStopWatchPanelLabel();
     }
 
 
     private void setUpUI() {
+        mainPanel = new JPanel();
+        cardLayout = new CardLayout();
+
+        mainPanel.setLayout(cardLayout);
+        mainPanel.add(splashScreenPanel, "1");
+        mainPanel.add(stopWatchContainerView, "2");
+        cardLayout.show(mainPanel, "1");
+
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setLayout(new BorderLayout());
-
-        this.add(stopWatchPanel, BorderLayout.CENTER);
-        this.add(buttonPanel, BorderLayout.SOUTH);
         this.setJMenuBar(mainMenuBar);
+        this.add(mainPanel);
         this.setVisible(true);
     }
 }
