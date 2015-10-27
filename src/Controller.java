@@ -22,7 +22,7 @@ public class Controller {
     }
 
     private void setUpListeners() {
-        this.mainFrame.getButtonPanel()
+        this.mainFrame.getStopWatchButtonPanel()
                 .addClickListener(new ClickListener() {
                     @Override
                     public void onClick(ActionEvent e) {
@@ -74,11 +74,11 @@ public class Controller {
 
         t.start();
         // stop button
-        mainFrame.getButtonPanel().getStopBtn().setEnabled(true);
+        mainFrame.getStopWatchButtonPanel().getStopBtn().setEnabled(true);
         // reset button
-        mainFrame.getButtonPanel().getResetBtn().setEnabled(false);
+        mainFrame.getStopWatchButtonPanel().getResetBtn().setEnabled(false);
         // start button
-        mainFrame.getButtonPanel().getStartBtn().setEnabled(false);
+        mainFrame.getStopWatchButtonPanel().getStartBtn().setEnabled(false);
 
     }
 
@@ -86,11 +86,11 @@ public class Controller {
         running = false;
 
         // start button
-        mainFrame.getButtonPanel().getStartBtn().setEnabled(true);
+        mainFrame.getStopWatchButtonPanel().getStartBtn().setEnabled(true);
         // stop button
-        mainFrame.getButtonPanel().getStopBtn().setEnabled(false);
+        mainFrame.getStopWatchButtonPanel().getStopBtn().setEnabled(false);
         // reset button
-        mainFrame.getButtonPanel().getResetBtn().setEnabled(true);
+        mainFrame.getStopWatchButtonPanel().getResetBtn().setEnabled(true);
     }
 
     private void setDisplayState(int newState) {

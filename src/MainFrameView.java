@@ -27,8 +27,8 @@ public class MainFrameView extends JFrame {
         setUpUI();
     }
 
-    public ButtonPanelView getButtonPanel() {
-        return this.stopWatchContainerView.getButtonPanel();
+    public StopWatchButtonPanel getStopWatchButtonPanel() {
+        return this.stopWatchContainerView.getStopWatchButtonPanel();
     }
 
     public CardLayout getCardLayout() {
