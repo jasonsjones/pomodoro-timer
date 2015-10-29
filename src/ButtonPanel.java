@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class StopWatchButtonPanel extends JPanel implements ActionListener {
+public class ButtonPanel extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,7 +22,7 @@ public class StopWatchButtonPanel extends JPanel implements ActionListener {
      * Constructs a ButtonPanel and adds three buttons to the button for
      * the 'start', 'stop', and 'reset' button.
      */
-    public StopWatchButtonPanel() {
+    public ButtonPanel() {
         startBtn = new JButton("Start");
         stopBtn = new JButton("Stop");
         resetBtn = new JButton("Reset");

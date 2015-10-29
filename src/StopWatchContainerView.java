@@ -4,11 +4,11 @@ import java.awt.*;
 
 public class StopWatchContainerView extends JPanel{
 
-    private StopWatchButtonPanel buttonPanel;
+    private ButtonPanel buttonPanel;
     private StopWatchPanel stopWatchPanel;
 
     public StopWatchContainerView() {
-        buttonPanel = new StopWatchButtonPanel();
+        buttonPanel = new ButtonPanel();
         stopWatchPanel = new StopWatchPanel();
         this.setLayout(new BorderLayout());
 
@@ -16,7 +16,7 @@ public class StopWatchContainerView extends JPanel{
         this.add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    public StopWatchButtonPanel getStopWatchButtonPanel() {
+    public ButtonPanel getStopWatchButtonPanel() {
         return this.buttonPanel;
     }
 
