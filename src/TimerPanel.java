@@ -1,17 +1,13 @@
-import javax.swing.BorderFactory;
+import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-
-public class StopWatchPanel extends JPanel {
+public class TimerPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
     JLabel label;
 
-    public StopWatchPanel() {
+    public TimerPanel() {
         label = new JLabel();
         setUpUI();
     }
@@ -21,7 +17,7 @@ public class StopWatchPanel extends JPanel {
     }
 
     private void setUpUI() {
-        this.setBorder(BorderFactory.createTitledBorder("StopWatch"));
+        this.setBorder(BorderFactory.createTitledBorder("Timer"));
         label.setFont(new Font("Helvetica", Font.BOLD, 42));
 
         this.setLayout(new GridBagLayout());
