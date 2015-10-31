@@ -1,3 +1,5 @@
+package com.jasonsjones.pomodoro;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.*;

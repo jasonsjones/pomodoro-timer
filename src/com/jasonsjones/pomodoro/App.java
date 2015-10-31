@@ -1,3 +1,5 @@
+package com.jasonsjones.pomodoro;
+
 import java.awt.EventQueue;
 
 public class App {

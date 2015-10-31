@@ -1,3 +1,5 @@
+package com.jasonsjones.pomodoro;
+
 import javax.swing.*;
 import java.awt.*;
 

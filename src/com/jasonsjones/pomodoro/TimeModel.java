@@ -1,5 +1,7 @@
+package com.jasonsjones.pomodoro;
+
 /**
- * Filename: TimeModel.java
+ * Filename: com.jasonsjones.pomodoro.TimeModel.java
  *
  * Simple timer class that represents a time model with the notion of an hour,
  * minute, and second in the form of H:MM:SS. Provides some basic functionality
@@ -18,7 +20,7 @@ public class TimeModel {
     private int timeInSeconds;
 
     /**
-     * Constructs a default TimeModel object initializing the hour, minute, and
+     * Constructs a default com.jasonsjones.pomodoro.TimeModel object initializing the hour, minute, and
      * second to 0
      */
     public TimeModel() {
@@ -27,7 +29,7 @@ public class TimeModel {
 
 
     /**
-     * Constructs a TimeModel object initializing the second to s, and minute and
+     * Constructs a com.jasonsjones.pomodoro.TimeModel object initializing the second to s, and minute and
      * hour to 0
      *
      * @param s the second
@@ -38,7 +40,7 @@ public class TimeModel {
 
 
     /**
-     * Constructs a TimeModel object initializing the minute to m, second to s, and
+     * Constructs a com.jasonsjones.pomodoro.TimeModel object initializing the minute to m, second to s, and
      * hour to 0
      *
      * @param m the minute
@@ -50,7 +52,7 @@ public class TimeModel {
 
 
     /**
-     * Constructs a TimeModel object initializing the hour to h, minute to m, and
+     * Constructs a com.jasonsjones.pomodoro.TimeModel object initializing the hour to h, minute to m, and
      * second to s.
      *
      * @param h the hour

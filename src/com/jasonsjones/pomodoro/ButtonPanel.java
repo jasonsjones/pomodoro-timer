@@ -1,3 +1,5 @@
+package com.jasonsjones.pomodoro;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +21,7 @@ public class ButtonPanel extends JPanel implements ActionListener {
     private JButton resetBtn;
 
     /**
-     * Constructs a ButtonPanel and adds three buttons to the button for
+     * Constructs a com.jasonsjones.pomodoro.ButtonPanel and adds three buttons to the button for
      * the 'start', 'stop', and 'reset' button.
      */
     public ButtonPanel() {
