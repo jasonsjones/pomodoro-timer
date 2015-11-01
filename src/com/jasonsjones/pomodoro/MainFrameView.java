@@ -14,7 +14,7 @@ public class MainFrameView extends JFrame {
 
     private CardLayout cardLayout;
     private JPanel mainPanel;
-    private StopWatchContainerView stopWatchContainerView;
+    private ContainerView stopWatchContainerView;
     private SplashScreenPanel splashScreenPanel;
     private MainMenuBar mainMenuBar;
 
@@ -27,10 +27,6 @@ public class MainFrameView extends JFrame {
         mainMenuBar = new MainMenuBar();
         splashScreenPanel = new SplashScreenPanel();
         setUpUI();
-    }
-
-    public ButtonPanel getStopWatchButtonPanel() {
-        return this.stopWatchContainerView.getStopWatchButtonPanel();
     }
 
     public CardLayout getCardLayout() {
@@ -49,18 +45,21 @@ public class MainFrameView extends JFrame {
         return this.splashScreenPanel;
     }
 
-    public StopWatchContainerView getStopWatchContainerView() {
+    public ButtonPanel getStopWatchButtonPanel() {
+        return this.stopWatchContainerView.getButtonPanel();
+    }
+
+    public ContainerView getStopWatchContainerView() {
         return this.stopWatchContainerView;
     }
 
-    public StopWatchPanel getStopWatchPanel() {
-        return this.stopWatchContainerView.getStopWatchPanel();
+    public TimeDisplayPanel getStopWatchPanel() {
+        return this.stopWatchContainerView.getDisplayPanel();
     }
 
     public JLabel getStopWatchPanelLabel() {
-        return this.stopWatchContainerView.getStopWatchPanelLabel();
+        return this.stopWatchContainerView.getDisplayPanelLabel();
     }
-
 
     private void setUpUI() {
         mainPanel = new JPanel();
