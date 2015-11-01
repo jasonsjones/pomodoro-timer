@@ -15,6 +15,7 @@ public class MainFrameView extends JFrame {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private ContainerView stopWatchContainerView;
+    private ContainerView timerContainerView;
     private SplashScreenPanel splashScreenPanel;
     private MainMenuBar mainMenuBar;
 
@@ -24,6 +25,7 @@ public class MainFrameView extends JFrame {
     public MainFrameView() {
         super("Pomodoro");
         stopWatchContainerView = new StopWatchContainerView();
+        timerContainerView = new TimerContainerView();
         mainMenuBar = new MainMenuBar();
         splashScreenPanel = new SplashScreenPanel();
         setUpUI();
@@ -49,16 +51,32 @@ public class MainFrameView extends JFrame {
         return this.stopWatchContainerView.getButtonPanel();
     }
 
+    public ButtonPanel getTimerButtonPanel() {
+        return this.timerContainerView.getButtonPanel();
+    }
+
     public ContainerView getStopWatchContainerView() {
         return this.stopWatchContainerView;
+    }
+
+    public ContainerView getTimerContainerView() {
+        return this.timerContainerView;
     }
 
     public TimeDisplayPanel getStopWatchPanel() {
         return this.stopWatchContainerView.getDisplayPanel();
     }
 
+    public TimeDisplayPanel getTimerPanel() {
+        return this.timerContainerView.getDisplayPanel();
+    }
+
     public JLabel getStopWatchPanelLabel() {
         return this.stopWatchContainerView.getDisplayPanelLabel();
+    }
+
+    public JLabel getTimerPanelLabel() {
+        return this.timerContainerView.getDisplayPanelLabel();
     }
 
     private void setUpUI() {
@@ -68,6 +86,7 @@ public class MainFrameView extends JFrame {
         mainPanel.setLayout(cardLayout);
         mainPanel.add(splashScreenPanel, "1");
         mainPanel.add(stopWatchContainerView, "2");
+        mainPanel.add(timerContainerView, "3");
         cardLayout.show(mainPanel, "1");
 
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -77,4 +96,3 @@ public class MainFrameView extends JFrame {
         this.setVisible(true);
     }
 }
-
