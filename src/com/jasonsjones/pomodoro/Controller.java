@@ -10,7 +10,6 @@ public class Controller {
 
     private volatile boolean running = true;
 
-
     private TimeModel model;
     private MainFrameView mainFrame;
     private int state;
@@ -18,7 +17,6 @@ public class Controller {
     public Controller(TimeModel model, MainFrameView view) {
         this.model = model;
         this.mainFrame = view;
-        this.mainFrame.getStopWatchPanelLabel().setText(model.toString());
         setUpListeners();
         setDisplayState(SPLASH_STATE);
     }
@@ -29,9 +27,9 @@ public class Controller {
                     @Override
                     public void onClick(ActionEvent e) {
                         if (e.getActionCommand().equals("Start")) {
-                            processStart();
+                            stopWatchStart();
                         } else if (e.getActionCommand().equals("Stop")) {
-                            processStop();
+                            stopWatchStop();
                         } else {
                             model.reset();
                             mainFrame.getStopWatchPanelLabel().setText(model.toString());
@@ -47,13 +45,13 @@ public class Controller {
                         if (e.getActionCommand().equals("StopWatch")) {
                             setDisplayState(STOPWATCH_STATE);
                         } else if (e.getActionCommand().equals("Timer")) {
-                            setDisplayState(SPLASH_STATE);
+                            setDisplayState(TIMER_STATE);
                         }
                     }
                 });
     }
 
-    private void processStart() {
+    private void stopWatchStart() {
 
         Thread t = new Thread(new Runnable() {
 
@@ -84,7 +82,7 @@ public class Controller {
 
     }
 
-    private void processStop() {
+    private void stopWatchStop() {
         running = false;
 
         // start button
@@ -108,7 +106,13 @@ public class Controller {
                 break;
             case STOPWATCH_STATE:
                 System.out.println("modifying view based on stop watch state");
+                this.mainFrame.getStopWatchPanelLabel().setText(model.toString());
                 mainFrame.getCardLayout().show(mainFrame.getMainPanel(), "2");
+                break;
+            case TIMER_STATE:
+                System.out.println("modifying view based on timer state");
+                this.mainFrame.getTimerPanelLabel().setText(model.toString());
+                mainFrame.getCardLayout().show(mainFrame.getMainPanel(), "3");
                 break;
             default:
                 break;
