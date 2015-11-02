@@ -39,6 +39,8 @@ public class ButtonPanel extends JPanel implements ActionListener {
         stopBtn.addActionListener(this);
         resetBtn.addActionListener(this);
 
+        stopBtn.setEnabled(false);
+
         add(startBtn);
         add(stopBtn);
         add(resetBtn);

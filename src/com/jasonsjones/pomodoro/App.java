@@ -11,8 +11,7 @@ public class App {
             @Override
             public void run() {
                 MainFrameView view = new MainFrameView();
-                TimeModel model = new TimeModel();
-                new Controller(model, view);
+                new Controller(view);
             }
         });
     }

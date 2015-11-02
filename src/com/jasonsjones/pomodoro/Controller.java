@@ -8,14 +8,17 @@ public class Controller {
     public static final int STOPWATCH_STATE = 1;
     public static final int TIMER_STATE = 2;
 
-    private volatile boolean running = true;
+    private volatile boolean isStopWatchRunning = true;
+    private volatile boolean isTimerRunning = true;
 
-    private TimeModel model;
+    private TimeModel stopWatchModel;
+    private TimeModel timerModel;
     private MainFrameView mainFrame;
     private int state;
 
-    public Controller(TimeModel model, MainFrameView view) {
-        this.model = model;
+    public Controller(MainFrameView view) {
+        this.stopWatchModel = new TimeModel();
+        this.timerModel = new TimeModel(30, 0);
         this.mainFrame = view;
         setUpListeners();
         setDisplayState(SPLASH_STATE);
@@ -24,6 +27,7 @@ public class Controller {
     private void setUpListeners() {
         this.mainFrame.getStopWatchButtonPanel()
                 .addClickListener(new ClickListener() {
+
                     @Override
                     public void onClick(ActionEvent e) {
                         if (e.getActionCommand().equals("Start")) {
@@ -31,8 +35,24 @@ public class Controller {
                         } else if (e.getActionCommand().equals("Stop")) {
                             stopWatchStop();
                         } else {
-                            model.reset();
-                            mainFrame.getStopWatchPanelLabel().setText(model.toString());
+                            stopWatchModel.reset();
+                            mainFrame.getStopWatchPanelLabel().setText(stopWatchModel.toString());
+                        }
+                    }
+                });
+
+        this.mainFrame.getTimerButtonPanel()
+                .addClickListener(new ClickListener() {
+
+                    @Override
+                    public void onClick(ActionEvent e) {
+                        if (e.getActionCommand().equals("Start")) {
+                            timerStart();
+                        } else if (e.getActionCommand().equals("Stop")) {
+                            timerStop();
+                        } else {
+                            timerModel.setTimer(0, 30, 0);
+                            mainFrame.getTimerPanelLabel().setText(timerModel.toString());
                         }
                     }
                 });
@@ -41,7 +61,6 @@ public class Controller {
                 .addMainMenuListener(new MainMenuListener() {
                     @Override
                     public void emitMenuEvent(ActionEvent e) {
-                        System.out.println("menu clicked..." + e.getActionCommand());
                         if (e.getActionCommand().equals("StopWatch")) {
                             setDisplayState(STOPWATCH_STATE);
                         } else if (e.getActionCommand().equals("Timer")) {
@@ -57,13 +76,13 @@ public class Controller {
 
             @Override
             public void run() {
-                running = true;
-                while (running) {
+                isStopWatchRunning = true;
+                while (isStopWatchRunning) {
                     try {
                         Thread.sleep(1000);
-                        if (running) {
-                            model.incrementSecond();
-                            mainFrame.getStopWatchPanelLabel().setText(model.toString());
+                        if (isStopWatchRunning) {
+                            stopWatchModel.incrementSecond();
+                            mainFrame.getStopWatchPanelLabel().setText(stopWatchModel.toString());
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -73,24 +92,55 @@ public class Controller {
         });
 
         t.start();
-        // stop button
-        mainFrame.getStopWatchButtonPanel().getStopBtn().setEnabled(true);
-        // reset button
-        mainFrame.getStopWatchButtonPanel().getResetBtn().setEnabled(false);
-        // start button
-        mainFrame.getStopWatchButtonPanel().getStartBtn().setEnabled(false);
+        setButtonVisibilityOnStart(mainFrame.getStopWatchButtonPanel());
+    }
 
+    private void timerStart() {
+
+        Thread t = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                isTimerRunning = true;
+                while (isTimerRunning) {
+                    try {
+                        Thread.sleep(1000);
+                        if (isTimerRunning) {
+                            timerModel.decrementSecond();
+                            mainFrame.getTimerPanelLabel().setText(timerModel.toString());
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        t.start();
+        setButtonVisibilityOnStart(mainFrame.getTimerButtonPanel());
     }
 
     private void stopWatchStop() {
-        running = false;
+        isStopWatchRunning = false;
+        setButtonVisibilityOnStop(mainFrame.getStopWatchButtonPanel());
+    }
 
-        // start button
-        mainFrame.getStopWatchButtonPanel().getStartBtn().setEnabled(true);
-        // stop button
-        mainFrame.getStopWatchButtonPanel().getStopBtn().setEnabled(false);
-        // reset button
-        mainFrame.getStopWatchButtonPanel().getResetBtn().setEnabled(true);
+    private void timerStop() {
+        isTimerRunning = false;
+        setButtonVisibilityOnStop(mainFrame.getTimerButtonPanel());
+    }
+
+    private void setButtonVisibilityOnStart(ButtonPanel bp) {
+        bp.getStopBtn().setEnabled(true);
+        bp.getResetBtn().setEnabled(false);
+        bp.getStartBtn().setEnabled(false);
+    }
+
+    private void setButtonVisibilityOnStop(ButtonPanel bp) {
+        bp.getStopBtn().setEnabled(false);
+        bp.getResetBtn().setEnabled(true);
+        bp.getStartBtn().setEnabled(true);
+
     }
 
     private void setDisplayState(int newState) {
@@ -101,17 +151,14 @@ public class Controller {
     private void modifyViewBasedOnState() {
         switch (this.state) {
             case SPLASH_STATE:
-                System.out.println("modifying view based on splash state");
                 mainFrame.getCardLayout().show(mainFrame.getMainPanel(), "1");
                 break;
             case STOPWATCH_STATE:
-                System.out.println("modifying view based on stop watch state");
-                this.mainFrame.getStopWatchPanelLabel().setText(model.toString());
+                this.mainFrame.getStopWatchPanelLabel().setText(stopWatchModel.toString());
                 mainFrame.getCardLayout().show(mainFrame.getMainPanel(), "2");
                 break;
             case TIMER_STATE:
-                System.out.println("modifying view based on timer state");
-                this.mainFrame.getTimerPanelLabel().setText(model.toString());
+                this.mainFrame.getTimerPanelLabel().setText(timerModel.toString());
                 mainFrame.getCardLayout().show(mainFrame.getMainPanel(), "3");
                 break;
             default:
