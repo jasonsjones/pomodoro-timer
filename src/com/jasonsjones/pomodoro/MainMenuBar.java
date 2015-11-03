@@ -19,15 +19,21 @@ public class MainMenuBar extends JMenuBar implements ActionListener {
         file.add(eMenuItem);
         this.add(file);
 
-        JMenu mode = new JMenu("Mode");
+        JMenu view = new JMenu("View");
+
+        JMenuItem splashMenuItem = new JMenuItem("Splash Screen");
+        splashMenuItem.addActionListener(this);
+
         JMenuItem timerMenuItem = new JMenuItem("Timer");
         timerMenuItem.addActionListener(this);
+
         JMenuItem stopWatchMenuItem = new JMenuItem("StopWatch");
         stopWatchMenuItem.addActionListener(this);
 
-        mode.add(timerMenuItem);
-        mode.add(stopWatchMenuItem);
-        this.add(mode);
+        view.add(splashMenuItem);
+        view.add(timerMenuItem);
+        view.add(stopWatchMenuItem);
+        this.add(view);
     }
 
     public void addMainMenuListener(MainMenuListener listener) {

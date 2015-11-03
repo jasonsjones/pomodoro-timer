@@ -18,7 +18,7 @@ public class SplashScreenPanel extends JPanel{
 
         JLabel directions = new JLabel();
         directions.setFont(new Font("Helvetica", Font.PLAIN, 16));
-        directions.setText("Select desired 'Mode' from the menu");
+        directions.setText("Select desired 'View' from the menu");
 
         JLabel copyright = new JLabel();
         copyright.setFont(new Font("Helvetica", Font.ITALIC, 12));

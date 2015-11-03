@@ -65,6 +65,8 @@ public class Controller {
                             setDisplayState(STOPWATCH_STATE);
                         } else if (e.getActionCommand().equals("Timer")) {
                             setDisplayState(TIMER_STATE);
+                        } else if (e.getActionCommand().equals("Splash Screen")) {
+                            setDisplayState(SPLASH_STATE);
                         }
                     }
                 });
