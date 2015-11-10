@@ -70,6 +70,20 @@ public class Controller {
                         }
                     }
                 });
+
+        TimerContainerView tcv = (TimerContainerView) this.mainFrame.getTimerContainerView();
+        tcv.getAdjustTimerButtonPanel().addClickListener(new ClickListener() {
+            @Override
+            public void onClick(ActionEvent e) {
+                if (e.getActionCommand().equals("+ min")) {
+                    timerModel.setTimer(timerModel.getTimeInSeconds() + 60);
+                    mainFrame.getTimerPanelLabel().setText(timerModel.toString());
+                } else if (e.getActionCommand().equals("- min")) {
+                    timerModel.setTimer(timerModel.getTimeInSeconds() - 60);
+                    mainFrame.getTimerPanelLabel().setText(timerModel.toString());
+                }
+            }
+        });
     }
 
     private void stopWatchStart() {
